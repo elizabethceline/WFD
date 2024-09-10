@@ -39,3 +39,7 @@ Route::get('/post', [PostController::class, 'index'])->name('post');
 Route::get('/base', function () {
     return view('base');
 });
+
+Route::get('/tail', function() {
+    return view('tail');
+});
