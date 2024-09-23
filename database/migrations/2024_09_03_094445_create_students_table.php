@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id('student_id')->autoIncrement();
-            $table->string('nrp',9)->unique();
-            $table->string('name');
-            $table->date('date_of_birth');
-            $table->string('place_of_birth');
-            $table->text('address')->nullable();
-            $table->string('phone_number');
-            $table->boolean('is_active')->default(true);
-            $table->foreignId('unit_id');
-            $table->timestamps();
-        });
+        // Schema::create('students', function (Blueprint $table) {
+        //     $table->id('student_id')->autoIncrement();
+        //     $table->string('nrp',9)->unique();
+        //     $table->string('name');
+        //     $table->date('date_of_birth');
+        //     $table->string('place_of_birth');
+        //     $table->text('address')->nullable();
+        //     $table->string('phone_number');
+        //     $table->boolean('is_active')->default(true);
+        //     $table->foreignId('unit_id');
+        //     $table->timestamps();
+        // });
     }
 
     /**

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('course_name_en')->language('english')->after('course_name');
-            $table->string('course_owner_unit_code',6)->after('course_name_en');
-        });
+        // Schema::table('courses', function (Blueprint $table) {
+        //     $table->string('course_name_en')->language('english')->after('course_name');
+        //     $table->string('course_owner_unit_code',6)->after('course_name_en');
+        // });
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -40,6 +41,14 @@ Route::get('/base', function () {
     return view('base');
 });
 
-Route::get('/tail', function() {
+Route::get('/tail', function () {
     return view('tail');
+});
+
+Route::get('/courses', function () {
+    return view('courses', ['courses' => Course::all()]);
+});
+
+Route::get('/course/{course:course_id}', function (Course $course) {
+    return view('course', ['course' => $course]);
 });

@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('students', function (Blueprint $table) {
-        //     $table->string('nrp',16)->change();
-        // });
+        Schema::create('units', function (Blueprint $table) {
+            $table->id('id')->autoIncrement();
+            $table->string('name');
+            $table->tinyInteger('unit_level');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('units');
     }
 };

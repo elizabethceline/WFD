@@ -1,0 +1,30 @@
+@extends('base/base2')
+
+@section('content')
+    <div class="container my-4 mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+        @foreach ($courses as $course)
+            <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
+                <div>
+                    <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
+                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true"><!-- ... --></svg>
+                    </span>
+                </div>
+                <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">
+                    {{ $course['course_name'] }}</h3>
+                <h3 class="text-slate-900 dark:text-white text-base font-medium tracking-tight">
+                    {{ $course['course_name_en'] }}</h3>
+                <h3 class="text-slate-900 dark:text-white text-base font-medium tracking-tight">
+                    {{ $course->unit->name }}</h3>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in
+                    outer space.
+                </p>
+                <div class="mt-10 flex items-center justify-center">
+                    <a href="/course/{{ $course['course_id'] }}"
+                        class="rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold hover:bg-indigo-400 text-white">Details</a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection
