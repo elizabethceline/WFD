@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -49,6 +50,4 @@ Route::get('/courses', function () {
     return view('courses', ['courses' => Course::all()]);
 });
 
-Route::get('/course/{course:course_id}', function (Course $course) {
-    return view('course', ['course' => $course]);
-});
+Route::get('/course/{course:id}', [CourseController::class, 'show']);

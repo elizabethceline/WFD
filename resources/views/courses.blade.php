@@ -21,7 +21,7 @@
                     outer space.
                 </p>
                 <div class="mt-10 flex items-center justify-center">
-                    <a href="/course/{{ $course['course_id'] }}"
+                    <a href="/course/{{ $course['id'] }}"
                         class="rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold hover:bg-indigo-400 text-white">Details</a>
                 </div>
             </div>
