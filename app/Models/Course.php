@@ -14,6 +14,15 @@ class Course extends Model
     protected $table = 'courses';
     // protected $primaryKey='course_id';
 
+    protected $fillable = [
+        'course_name',
+        'course_code',
+        'year',
+        'unit_id',
+        'course_name_en',
+        'sks'
+    ];
+
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);

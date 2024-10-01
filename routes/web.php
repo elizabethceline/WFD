@@ -53,5 +53,9 @@ Route::get('/courses', function () {
 Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
 Route::post('course/insert', [CourseController::class, 'insert'])->name('course.insert');
 
-Route::get('/course/view/{course:id}', [CourseController::class, 'show']);
+Route::get('/course/edit/{course:id}', [CourseController::class, 'edit'])->name('course.edit');
+Route::put('/course/update/{course:id}', [CourseController::class, 'update'])->name('course.update');
 
+Route::delete('/course/delete/{course:id}', [CourseController::class, 'delete'])->name('course.delete');
+
+Route::get('/course/view/{course:id}', [CourseController::class, 'show']);

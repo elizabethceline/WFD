@@ -51,4 +51,44 @@ class CourseController extends Controller
         $course->save();
         return redirect()->route('courses')->with('success', 'Course berhasil diinput');
     }
+
+    public function edit(Course $course)
+    {
+        $units = Unit::all()->where('is_active', 1);
+        return view('course.edit', ['course' => $course, 'units' => $units]);
+    }
+
+    public function update(Course $course)
+    {
+        request()->validate([
+            'course_name' => 'required|string|max:255',
+            'course_code' => 'required|size:6',
+            'curriculum_year' => 'required',
+            'unit_id' => 'required',
+            'course_name_en' => 'required|string|max:255'
+        ], [
+            'course_name.required' => 'Course name harus diisi',
+            'course_code.required' => 'Course code harus diisi',
+            'course_code.size' => 'Course code harus 6 karakter',
+            'curriculum_year.required' => 'Curriculum year harus diisi',
+            'unit_id.required' => 'Unit harus diisi',
+            'course_name_en.required' => 'Course name (EN) harus diisi'
+        ]);
+
+        $course->update([
+            'course_name' => request('course_name'),
+            'course_code' => request('course_code'),
+            'year' => request('curriculum_year'),
+            'unit_id' => request('unit_id'),
+            'course_name_en' => request('course_name_en')
+        ]);
+
+        return redirect()->route('course.edit', $course->id)->with('success', 'Course berhasil diupdate');
+    }
+
+    public function delete(Course $course)
+    {
+        $course->delete();
+        return redirect()->route('courses')->with('success', 'Course berhasil dihapus');
+    }
 }
