@@ -1,6 +1,8 @@
 @extends('base/base2')
 
 @section('content')
+    <a href="{{ route('course.create') }}"
+        class="rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold hover:bg-indigo-400 text-white">Insert Course</a>
     <div class="container my-4 mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         @foreach ($courses as $course)
             <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
@@ -21,7 +23,7 @@
                     outer space.
                 </p>
                 <div class="mt-10 flex items-center justify-center">
-                    <a href="/course/{{ $course['id'] }}"
+                    <a href="/course/view/{{ $course['id'] }}"
                         class="rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold hover:bg-indigo-400 text-white">Details</a>
                 </div>
             </div>

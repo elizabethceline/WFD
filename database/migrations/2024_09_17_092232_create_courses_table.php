@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('course_code',6)->unique();
             $table->year('year');
             $table->string('course_name');
-            $table->string('course_name_(en)');
+            $table->string('course_name_en');
             $table->tinyInteger('sks');
             $table->foreignId('unit_id');
             $table->foreign('unit_id')->references('id')->on('units')->OnDelete('cascade');

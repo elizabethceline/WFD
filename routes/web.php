@@ -48,6 +48,10 @@ Route::get('/tail', function () {
 
 Route::get('/courses', function () {
     return view('courses', ['courses' => Course::all()]);
-});
+})->name('courses');
 
-Route::get('/course/{course:id}', [CourseController::class, 'show']);
+Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+Route::post('course/insert', [CourseController::class, 'insert'])->name('course.insert');
+
+Route::get('/course/view/{course:id}', [CourseController::class, 'show']);
+
