@@ -50,10 +50,13 @@ Route::get('/courses', function () {
     return view('courses', ['courses' => Course::all()]);
 })->name('courses');
 
-Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+Route::middleware(['check:admin,subadmin,manager'])->group(function () {
+    Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+    Route::get('/course/edit/{course:id}', [CourseController::class, 'edit'])->name('course.edit');
+});
+
 Route::post('course/insert', [CourseController::class, 'insert'])->name('course.insert');
 
-Route::get('/course/edit/{course:id}', [CourseController::class, 'edit'])->name('course.edit');
 Route::put('/course/update/{course:id}', [CourseController::class, 'update'])->name('course.update');
 
 Route::delete('/course/delete/{course:id}', [CourseController::class, 'delete'])->name('course.delete');
