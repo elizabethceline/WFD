@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\HomeController;
@@ -46,19 +47,18 @@ Route::get('/tail', function () {
     return view('tail');
 });
 
-Route::get('/courses', function () {
-    return view('courses', ['courses' => Course::all()]);
-})->name('courses');
-
-Route::middleware(['check:admin,subadmin,manager'])->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/courses', function () {
+        return view('courses', ['courses' => Course::all(), 'title' => 'All Courses']);
+    })->name('courses');
     Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+    Route::post('course/insert', [CourseController::class, 'insert'])->name('course.insert');
     Route::get('/course/edit/{course:id}', [CourseController::class, 'edit'])->name('course.edit');
+    Route::put('/course/update/{course:id}', [CourseController::class, 'update'])->name('course.update');
+    Route::delete('/course/delete/{course:id}', [CourseController::class, 'delete'])->name('course.delete');
+    Route::get('/course/view/{course:id}', [CourseController::class, 'show']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::post('course/insert', [CourseController::class, 'insert'])->name('course.insert');
-
-Route::put('/course/update/{course:id}', [CourseController::class, 'update'])->name('course.update');
-
-Route::delete('/course/delete/{course:id}', [CourseController::class, 'delete'])->name('course.delete');
-
-Route::get('/course/view/{course:id}', [CourseController::class, 'show']);
+Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('login_auth', [AuthController::class, 'login_auth'])->name('login.auth');

@@ -37,8 +37,18 @@
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
-                            aria-hidden="true">&rarr;</span></a>
+                    @if (Auth::check())
+                        <a href="{{ route('logout') }}" class="text-sm font-semibold leading-6 text-gray-900">Log out
+                            <span aria-hidden="true">&rarr;</span></a>
+                    @else
+                        <a href="{{ route('logout') }}" class="text-sm font-semibold leading-6 text-gray-900">Log in
+                            <span aria-hidden="true">&rarr;</span></a>
+                    @endif
+
+                    {{-- @auth
+                    <a href="{{ route('logout') }}" class="text-sm font-semibold leading-6 text-gray-900">Log out
+                        <span aria-hidden="true">&rarr;</span></a>
+                    @endauth --}}
                 </div>
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
@@ -72,6 +82,11 @@
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
                                 <a href="#"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                                @auth
+                                    <a href="{{ route('logout') }}"
+                                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                                        Out</a>
+                                @endauth
                             </div>
                             <div class="py-6">
                                 <a href="#"
@@ -87,7 +102,7 @@
         <br>
         <br>
         <div class="container m-auto">
-            <h1 class="text-center font-bold mt-10 text-4xl">All Courses</h1>
+            <h1 class="text-center font-bold mt-10 text-4xl">{{ $title }}</h1>
 
             @yield('content')
         </div>

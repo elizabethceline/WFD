@@ -1,4 +1,4 @@
-@extends('base/base2')
+@extends('base.base2')
 
 @section('content')
     @if (session('success'))

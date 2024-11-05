@@ -13,13 +13,13 @@ class CourseController extends Controller
         // eager loading
         $course->load(['unit', 'students']);
         $studentCount = $course->studentCount();
-        return view('course', ['course' => $course, 'students' => $course->students, 'studentCount' => $studentCount]);
+        return view('course', ['course' => $course, 'students' => $course->students, 'studentCount' => $studentCount, 'title' => $course->course_name]);
     }
 
     public function create()
     {
         $units = Unit::all()->where('is_active', 1);
-        return view('course.create', ['units' => $units]);
+        return view('course.create', ['units' => $units, 'title' => 'Create Course']);
     }
 
     public function insert(Request $request)
@@ -55,7 +55,7 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $units = Unit::all()->where('is_active', 1);
-        return view('course.edit', ['course' => $course, 'units' => $units]);
+        return view('course.edit', ['course' => $course, 'units' => $units, 'title' => 'Edit Course']);
     }
 
     public function update(Course $course)
